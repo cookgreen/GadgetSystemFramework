@@ -9,7 +9,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, Slot, QMetaObject, Q_ARG
 from PySide6.QtGui import QIcon
 
-from gsf.main_manager import GadgetManagerLogic
+from gsf.main_manager import *
 
 APP_ICON = os.path.join(os.path.dirname(__file__), 'assets', 'icon.png')
 
