@@ -5,7 +5,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 
-from main_manager import GadgetManagerLogic
+from gsf.main_manager import GadgetManagerLogic
 
 APP_ICON = os.path.join(os.path.dirname(__file__), 'assets', 'icon.png')
 

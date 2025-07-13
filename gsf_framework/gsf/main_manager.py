@@ -7,7 +7,7 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 
 # Define app name which used as folder name
-APP_NAME = "Gadget System Framework"
+APP_NAME = "GSF"
 
 # Get the user-specific Application Data Dir
 APP_DATA_PATH = os.path.join(os.getenv('APPDATA'), APP_NAME)

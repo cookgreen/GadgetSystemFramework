@@ -1,7 +1,15 @@
+import os
 import sys
 from PySide6.QtWidgets import QApplication
-from control_center_logic import ControlCenter 
-from main_manager import GADGETS_DIR, CONFIG_DIR 
+
+if getattr(sys, 'frozen', False):
+    application_path = os.path.dirname(sys.executable)
+else:
+    application_path = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, os.path.abspath(os.path.join(application_path, '..')))
+
+from gsf.control_center_logic import ControlCenter 
+from gsf.main_manager import GADGETS_DIR, CONFIG_DIR 
 
 def main():
     app = QApplication(sys.argv)
