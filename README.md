@@ -8,11 +8,15 @@ However, Gadget was deleted in later Windows systems, so this project aims to re
 ## Features:
 * Install/Uninstall Gadgets
 * Provide API for developing new Gadget
-* Control Center for monitoring all Gadgets
+* Control Center for installing/uninstalling/monitoring all Gadgets
+* Provide a batch of [GSF-based  Desktop Gadgets](https://github.com/cookgreen/GSF-Gadgets/edit/main/README.md)
 
 ## Environment
 Python 3.12  
 PySide6  
+pywin32  
+pytray  
+Inno Setup  
 
 ## License
 GNU LGPL
