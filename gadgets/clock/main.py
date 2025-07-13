@@ -1,7 +1,7 @@
 import sys
-from PySide6.QtWidgets import QApplication
-from PySide6.QtGui import QPainter, QColor, QFont, QPen
-from PySide6.QtCore import QTimer, QTime
+from PySide6.QtWidgets import *
+from PySide6.QtGui import *
+from PySide6.QtCore import *
 
 # dynamic add GSF core lib into Python dir
 from gsf.gadget_base import BaseGadget

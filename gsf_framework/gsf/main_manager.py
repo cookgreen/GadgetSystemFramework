@@ -6,12 +6,24 @@ from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from .control_center import ControlCenter # import the control center
 
-# determine root dir and important dir
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-GADGETS_DIR = os.path.join(ROOT_DIR, 'gadgets')
-CONFIG_DIR = os.path.join(ROOT_DIR, 'config')
+# Define app name which used as folder name
+APP_NAME = "Gadget System Framework"
+
+# Get the user-specific Application Data Dir
+APP_DATA_PATH = os.path.join(os.getenv('APPDATA'), APP_NAME)
+
+# Define all important sub dirs
+GADGETS_DIR = os.path.join(APP_DATA_PATH, 'gadgets')
+CONFIG_DIR = os.path.join(APP_DATA_PATH, 'config')
 SESSION_FILE = os.path.join(CONFIG_DIR, 'session.json')
 DEFAULT_ICON = os.path.join(os.path.dirname(__file__), 'assets', 'icon.png')
+
+# --- Key Step：make sure these dirs exist ---
+def ensure_gsf_dirs_exist():
+    """Call when app started to make sure all necessary dirs has been created"""
+    print(f"GSF Home Directory: {APP_DATA_PATH}")
+    os.makedirs(GADGETS_DIR, exist_ok=True)
+    os.makedirs(CONFIG_DIR, exist_ok=True)
 
 def main():
     """Application entry point."""
@@ -23,6 +35,9 @@ def main():
 
 class GadgetManager:
     def __init__(self, app):
+        
+        ensure_gsf_dirs_exist()
+        
         self.app = app
         # prevent app exit when no window
         self.app.setQuitOnLastWindowClosed(False)
@@ -35,12 +50,17 @@ class GadgetManager:
         self.tray_icon.setIcon(QIcon(DEFAULT_ICON))
         self.tray_icon.setToolTip("Gadget System Framework")
         self.tray_icon.setVisible(True)
+        self.tray_icon.activated.connect(self.on_tray_icon_activated)
 
         self.setup_tray_menu()
         self.load_session()
         
         self.control_center_window = None
-
+    
+    def on_tray_icon_activated(self, reason):
+        if reason == QSystemTrayIcon.DoubleClick:
+            self.show_control_center()
+    
     def setup_tray_menu(self):
         menu = QMenu()
         open_center_action = menu.addAction("Open Control Center")
@@ -83,7 +103,7 @@ class GadgetManager:
             self.control_center_window.destroyed.connect(lambda: setattr(self, 'control_center_window', None))
 
         self.control_center_window.show()
-        self.control_center_window.activateWindow() # 激活窗口
+        self.control_center_window.activateWindow() # Activate window
 
     def launch_gadget(self, gadget_path, gadget_id):
         if gadget_id in self.running_gadgets and self.running_gadgets[gadget_id].poll() is None:

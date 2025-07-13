@@ -1,11 +1,11 @@
 import os
 import shutil
 import zipfile
-from PySide6.QtWidgets import (
-    QWidget, QVBoxLayout, QTableWidget, QTableWidgetItem,
-    QPushButton, QHBoxLayout, QHeaderView, QFileDialog
-)
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import *
+from PySide6.QtGui import *
+from PySide6.QtCore import *
+
+APP_ICON = os.path.join(os.path.dirname(__file__), 'assets', 'icon.png')
 
 class ControlCenter(QWidget):
     # --- defination signals ---
@@ -24,6 +24,7 @@ class ControlCenter(QWidget):
         self.populate_table()
 
     def init_ui(self):
+        self.setWindowIcon(QIcon(APP_ICON))
         self.setWindowTitle("GSF Control Center")
         self.setMinimumSize(600, 400)
         
