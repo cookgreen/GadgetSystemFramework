@@ -1,0 +1,6 @@
+{
+    "name": "Simple Clock",
+    "version": "1.0",
+    "description": "a desktop clock using GSF",
+    "entry_point": "main.py"
+}
