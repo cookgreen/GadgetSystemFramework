@@ -1,0 +1,18 @@
+# Gadget System Framework (GSF)   
+A framework system for installing, uninstalling, managing and developing gadgets for Windows 10/11  
+  
+Gadget is a suite of desktop widgets provided by Windows 7 system. This Gadget can provide users with many useful functions, such as clock, real-time financial data, Email notifications, etc.  
+  
+However, Gadget was deleted in later Windows systems, so this project aims to restore this feature for Windows 10/11
+
+## Features:
+* Install/Uninstall Gadgets
+* Provide API for developing new Gadget
+* Control Center for monitoring all Gadgets
+
+## Environment
+Python 3.12  
+PySide6  
+
+## License
+GNU LGPL
