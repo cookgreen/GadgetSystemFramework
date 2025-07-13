@@ -4,7 +4,7 @@ from PySide6.QtGui import QPainter, QColor, QFont, QPen
 from PySide6.QtCore import QTimer, QTime
 
 # dynamic add GSF core lib into Python dir
-from gsf_core.gadget_base import BaseGadget
+from gsf.gadget_base import BaseGadget
 
 class ClockGadget(BaseGadget):
     def __init__(self, gadget_path):
@@ -43,6 +43,7 @@ if __name__ == '__main__':
     gadget_path_arg = sys.argv[1]
 
     app = QApplication(sys.argv)
+    
     gadget = ClockGadget(gadget_path=gadget_path_arg)
     gadget.show()
     sys.exit(app.exec())

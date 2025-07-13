@@ -13,9 +13,17 @@ CONFIG_DIR = os.path.join(ROOT_DIR, 'config')
 SESSION_FILE = os.path.join(CONFIG_DIR, 'session.json')
 DEFAULT_ICON = os.path.join(os.path.dirname(__file__), 'assets', 'icon.png')
 
+def main():
+    """Application entry point."""
+    print("Starting Gadget System Framework (GSF)...")
+    # QApplication must be created here
+    app = QApplication(sys.argv)
+    manager = GadgetManager(app) # push app instance
+    sys.exit(manager.run())
+
 class GadgetManager:
-    def __init__(self):
-        self.app = QApplication(sys.argv)
+    def __init__(self, app):
+        self.app = app
         # prevent app exit when no window
         self.app.setQuitOnLastWindowClosed(False)
 
