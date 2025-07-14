@@ -1,0 +1,1 @@
+These service control scripts will be copied into gsf_framework/dist/GSF_Distribution folder
