@@ -1,4 +1,4 @@
-<img width="800" alt="gsf-logo-long" src="https://github.com/user-attachments/assets/11a45f05-367c-4f81-8c23-93708c8754fa" />
+<img width="1024" height="124" alt="gsf-logo-long" src="https://github.com/user-attachments/assets/1945d249-88f3-4d0d-b22d-41db2ddf22e6" />
   
 A framework system for installing, uninstalling, managing and developing gadgets for Windows 10/11  
   
