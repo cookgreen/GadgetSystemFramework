@@ -128,7 +128,7 @@ class GadgetManagerLogic:
             return
 
         # Use sys.executable to make sure use the current environment python interpreter
-        process = subprocess.Popen([sys.executable, entry_point, gadget_path])
+        process = subprocess.Popen(["python.exe", entry_point, gadget_path])
         self.running_gadgets[gadget_id] = process
         print(f"Launched gadget: {gadget_id} with PID: {process.pid}")
 

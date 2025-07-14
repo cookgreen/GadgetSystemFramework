@@ -20,9 +20,7 @@ class ControlCenter(QWidget):
         self.logic = GadgetManagerLogic()
         
         self.init_ui()
-        
         self.populate_table()
-
         self.logic.set_status_change_callback(
             lambda: QMetaObject.invokeMethod(self, "populate_table", Qt.QueuedConnection)
         )

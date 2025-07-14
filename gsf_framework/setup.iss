@@ -7,8 +7,8 @@ OutputBaseFilename=GSF-Setup-1.0
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
-SetupIconFile={app}\assets\icon-install.ico
-UninstallDisplayIcon={app}\assets\icon.ico
+SetupIconFile=dist\GSF_Distribution\gsf\assets\icon-install.ico
+UninstallDisplayIcon={app}/gsf\assets\icon.ico
 
 [Files]
 Source: "dist\GSF_Distribution\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs

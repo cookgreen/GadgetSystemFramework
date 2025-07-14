@@ -62,14 +62,33 @@ class GSFService(win32serviceutil.ServiceFramework):
         self.worker_thread = None
         logger.info(f"GSFService object created with args: {args}")
 
+    def SvcDoRun(self):
+        servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE, servicemanager.PYS_SERVICE_STARTED, (self._svc_name_, ''))
+        
+        self.ReportServiceStatus(win32service.SERVICE_RUNNING)
+        self.is_running = True
+        
+        self.worker_thread = threading.Thread(target=self.main_worker, name="GSF_WorkerThread")
+        self.worker_thread.daemon = True
+        self.worker_thread.start()
+        
+        logger.info("Service is running, worker thread dispatched.")
+        win32event.WaitForSingleObject(self.hWaitStop, win32event.INFINITE)
+        logger.info("SvcDoRun loop exited.")
+
     def SvcStop(self):
         self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
+        
         logger.info("Service stop requested.")
+        
         self.is_running = False
+        
         if self.tray_icon:
             self.tray_icon.stop()
             logger.info("Tray icon stop signal sent.")
+        
         win32event.SetEvent(self.hWaitStop)
+        
         if self.worker_thread and self.worker_thread.is_alive():
             logger.info("Waiting for worker thread to finish...")
             self.worker_thread.join(timeout=10)
@@ -77,19 +96,9 @@ class GSFService(win32serviceutil.ServiceFramework):
                 logger.warning("Worker thread did not exit gracefully.")
             else:
                 logger.info("Worker thread finished.")
+        
         logger.info("Service stopped.")
         self.ReportServiceStatus(win32service.SERVICE_STOPPED)
-
-    def SvcDoRun(self):
-        servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE, servicemanager.PYS_SERVICE_STARTED, (self._svc_name_, ''))
-        self.ReportServiceStatus(win32service.SERVICE_RUNNING)
-        self.is_running = True
-        self.worker_thread = threading.Thread(target=self.main_worker, name="GSF_WorkerThread")
-        self.worker_thread.daemon = True
-        self.worker_thread.start()
-        logger.info("Service is running, worker thread dispatched.")
-        win32event.WaitForSingleObject(self.hWaitStop, win32event.INFINITE)
-        logger.info("SvcDoRun loop exited.")
 
     def main_worker(self):
         logger.info("Worker thread started.")
