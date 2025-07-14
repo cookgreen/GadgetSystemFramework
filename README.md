@@ -10,7 +10,7 @@ However, Gadget was deleted in later Windows systems, so this project aims to re
 * Install/Uninstall Gadgets
 * Provide API for developing new Gadget
 * Control Center for installing/uninstalling/monitoring all Gadgets
-* Provide a batch of [GSF-based  Desktop Gadgets](https://github.com/cookgreen/GSF-Gadgets/edit/main/README.md)
+* Provide a batch of [GSF-based  Desktop Gadgets](https://github.com/cookgreen/GSF-Gadgets)
 
 ## Environment
 * Python 3.12  
